@@ -113,10 +113,6 @@ public class SortingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, inputField, 98, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, sortButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, inputField, 168, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 50, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 200, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 50, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 350, SpringLayout.WEST, this);
 	}
 	
 	/**
@@ -127,9 +123,5 @@ public class SortingPanel extends JPanel
 		
 	}
 	
-	/**
-	 * sends user text to the chatArea for processing and response
-	 * @param userInput - user specified text
-	 * @return - the user specified text
-	 */
+	
 }
