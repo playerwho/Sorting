@@ -1,5 +1,6 @@
 package sorting.control;
 
+import sorting.model.Gui;
 import sorting.model.Sorting;
 import sorting.view.SortingFrame;
 
@@ -10,13 +11,18 @@ public class SortingController
 	private int [] wholeNumbers;
 	private double [] realNumbers;
 	private String [] wordage;
+	private Gui [] myTemp;
 	
 	public int[] getWholeNumbers()
 	{
 		return wholeNumbers;
 	}
 
-
+	public Gui [] getMyTemp()
+	{
+		return myTemp;
+	}
+	
 	public double[] getRealNumbers()
 	{
 		return realNumbers;
@@ -28,7 +34,11 @@ public class SortingController
 		return wordage;
 	}
 
-
+	public void setMyTemp(Gui [] myTemp)
+	{
+		this.myTemp = myTemp;
+	}
+	
 	public void setWholenumbers(int[] wholenumbers)
 	{
 		this.wholeNumbers = wholenumbers;
@@ -46,6 +56,10 @@ public class SortingController
 		this.wordage = wordage;
 	}
 
+	public Sorting getMySorter()
+	{
+		return mySorter;
+	}
 
 	public SortingController()
 	{
@@ -57,18 +71,6 @@ public class SortingController
 	public void start()
 	{
 			fillTheArrays();
-			for(int spot : wholeNumbers)
-			{
-				System.out.print(spot + ", ");
-			}
-			System.out.println();
-			mySorter.selectionSort(wholeNumbers);
-			System.out.print(mySorter.sortingTime(mySorter.getSortTime()));
-			
-			for(int spot : wholeNumbers)
-			{
-				System.out.print(spot + ", ");
-			}
 	}
 
 
@@ -76,9 +78,11 @@ public class SortingController
 	{
 		randomIntArray();
 		randomDoubleArray();
+		stringArray();
+		fillMtTempArray();
 		
 	}
-
+	
 	private void randomDoubleArray()
 	{
 		realNumbers = new double[999];
@@ -101,5 +105,51 @@ public class SortingController
 			wholeNumbers[spot] = (int)(Math.random()* 55555);
 		}
 	}
-
+	
+	private void stringArray()
+	{
+		wordage = new String []
+				{
+				"dsadsada",
+				"ffewwfe",
+				"vdve2f2q",
+				"vieho2w",
+				"jgp3n",
+				"vnjdrbvoi3w",
+				"feifneipfnp2",
+				"mksdmoiwe2djmoi2",
+				"dwdjwidjiwdjwijdiw",
+				"dwqdwq",
+				"dsadsds"
+				
+				};
+	}
+	
+	private void fillMtTempArray()
+	{
+	    myTemp = new Gui [20];
+//		for(int count = 0; count < myTemp.length; count++)
+//		{
+//			myTemp[count] = new Gui("Gui #" + count, Math.random() * 144, true);
+//		}
+		
+		for (int row = 0; row < myTemp.length; row++)
+		{
+			
+				if (myTemp[row] == null)
+				{
+					double temp = (Math.random() * 144);
+					boolean isCool;
+					if (temp < 32)
+					{
+						isCool = true;
+					}
+					else
+					{
+						isCool = false;
+					}
+					myTemp[row] = new Gui("Object # " + row, temp, isCool);
+				}
+		}
+	}
 }
