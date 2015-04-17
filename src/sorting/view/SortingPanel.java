@@ -29,6 +29,11 @@ public class SortingPanel extends JPanel
 	
 	private JButton ObjectSort;
 	
+	private JButton arraryButton;
+	
+	private JButton clearTextButton;
+	
+	
 	/**
 	 * adds a text field to the panel
 	 */
@@ -50,6 +55,7 @@ public class SortingPanel extends JPanel
 	private JTextArea displayArea;
 	
 	
+	
 	/**
 	 * connects chatbot panel to base controller
 	 * @param baseController on the panel is the same as baseController on the appController
@@ -58,11 +64,14 @@ public class SortingPanel extends JPanel
 	{
 		this.baseController = baseController;
 		
-		sortButton = new JButton("Sort");
+		sortButton = new JButton("Sort Ints");
 		ObjectSort = new JButton("Sort Objects!");
 		searchButton = new JButton("Double Sort");
 		stringSort = new JButton("Sort Strings");
+		arraryButton = new JButton("Sort Array Stuff");
+		clearTextButton = new JButton("Clear Text");
 		inputField = new JTextField(20);
+		
 		baseLayout = new SpringLayout();
 		
 		
@@ -101,8 +110,19 @@ public class SortingPanel extends JPanel
 		this.add(searchButton);
 		this.add(stringSort);
 		this.add(ObjectSort);
+		this.add(clearTextButton);
+		this.add(arraryButton);
 		this.add(inputField);
+		inputField.setEditable(false);
 		inputField.setBackground(Color.RED);
+		
+		
+		
+		
+		
+		
+		
+		
 			
 	}
 	
@@ -128,6 +148,10 @@ public class SortingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, stringSort, 67, SpringLayout.EAST, searchButton);
 		baseLayout.putConstraint(SpringLayout.EAST, ObjectSort, -284, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, ObjectSort, -57, SpringLayout.NORTH, textPane);
+		baseLayout.putConstraint(SpringLayout.WEST, arraryButton, 51, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, arraryButton, 0, SpringLayout.SOUTH, textPane);
+		baseLayout.putConstraint(SpringLayout.NORTH, clearTextButton, 31, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, clearTextButton, 56, SpringLayout.WEST, this);
 	}
 	
 	/**
@@ -140,17 +164,55 @@ public class SortingPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String rawArray = "";
+				String rawArray2 = "";
 				for(int number : baseController.getWholeNumbers())
 				{
 					rawArray += number + ", ";
 				}
+				rawArray += "\n";
 				baseController.getMySorter().selectionSort(baseController.getWholeNumbers());
-				rawArray += baseController.getMySorter().sortingTime(baseController.getMySorter().getSortTime());
+				rawArray2 = baseController.getMySorter().sortingTime(baseController.getMySorter().getSortTime());
 				for(int number : baseController.getWholeNumbers())
 				{
 					rawArray += number + ", ";
 				}
-				displayArea.setText(rawArray);	
+				displayArea.setText(rawArray);
+				inputField.setText(rawArray2);
+				
+				
+//				String rawArray = "";
+//				for(int number : baseController.getWholeNumbers())
+//				{
+//					rawArray += number + ", ";
+//				}
+//				rawArray += "\n";
+//				baseController.getMySorter().quickSort(baseController.getWholeNumbers(), 0 , baseController.getWholeNumbers().length - 1);
+//				rawArray += baseController.getMySorter().sortingTime(baseController.getMySorter().getSortTime());
+//				rawArray += "\n";
+//				for(int number : baseController.getWholeNumbers())
+//				{
+//					rawArray += number + ", ";
+//				}
+//				displayArea.setText(rawArray);
+			}
+		});
+		
+		arraryButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{			
+				String rawArray = "";
+				for(int number : baseController.getArrayList())
+				{
+					rawArray += number + ", ";
+				}
+				baseController.getMySorter().arraySort(baseController.getArrayList());
+				rawArray += baseController.getMySorter().sortingTime(baseController.getMySorter().getSortTime());
+				for(int number : baseController.getArrayList())
+				{
+					rawArray += number + ", ";
+				}
+				displayArea.setText(rawArray);
 			}
 		});
 		
@@ -169,7 +231,7 @@ public class SortingPanel extends JPanel
 				{
 					rawArray += number + ", ";
 				}
-				displayArea.setText(rawArray);	
+				displayArea.setText(rawArray);
 			}
 		});
 		
@@ -212,9 +274,14 @@ public class SortingPanel extends JPanel
 				}
 				displayArea.setText(rawArray);	
 			}
-
+		});
+		
+		clearTextButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				displayArea.setText(null);
+			}
 		});
 	}
-	
-	
 }

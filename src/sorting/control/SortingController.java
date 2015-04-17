@@ -1,5 +1,7 @@
 package sorting.control;
 
+import java.util.ArrayList;
+
 import sorting.model.Gui;
 import sorting.model.Sorting;
 import sorting.view.SortingFrame;
@@ -8,10 +10,11 @@ public class SortingController
 {
 	private SortingFrame appFrame;
 	private Sorting mySorter;
-	private int [] wholeNumbers;
+	private int[] wholeNumbers;
 	private double [] realNumbers;
 	private String [] wordage;
 	private Gui [] myTemp;
+	private ArrayList<Integer> arrayList;
 	
 	public int[] getWholeNumbers()
 	{
@@ -60,17 +63,29 @@ public class SortingController
 	{
 		return mySorter;
 	}
+	
+	public ArrayList<Integer> getArrayList()
+	{
+		return arrayList;
+	}
+
+	public void setArrayList(ArrayList<Integer> arrayList)
+	{
+		this.arrayList = arrayList;
+	}
 
 	public SortingController()
 	{
 		mySorter = new Sorting();
 		appFrame = new SortingFrame(this);
+		arrayList = new ArrayList<Integer>();
 	}
 	
 
 	public void start()
 	{
 			fillTheArrays();
+			//System.out.println(getMySorter().arraySort(arrayList));
 	}
 
 
@@ -80,6 +95,7 @@ public class SortingController
 		randomDoubleArray();
 		stringArray();
 		fillMtTempArray();
+		randomArrayListArray();
 		
 	}
 	
@@ -99,10 +115,23 @@ public class SortingController
 	
 	private void randomIntArray()
 	{
-		wholeNumbers = new int [999];
+		wholeNumbers = new int [20];
 		for(int spot = 0; spot < wholeNumbers.length; spot++)
 		{
-			wholeNumbers[spot] = (int)(Math.random()* 55555);
+			wholeNumbers[spot] = (int)(Math.random()* 20);
+		}
+	}
+	
+	
+
+	private void randomArrayListArray()
+	{
+		wholeNumbers = new int [5000];
+		for(int spot = 0; spot < wholeNumbers.length; spot++)
+		{
+			int myRandom = (int)(Math.random()* 55555);
+			wholeNumbers[spot] = myRandom;
+			arrayList.add(myRandom);
 		}
 	}
 	
@@ -128,10 +157,6 @@ public class SortingController
 	private void fillMtTempArray()
 	{
 	    myTemp = new Gui [20];
-//		for(int count = 0; count < myTemp.length; count++)
-//		{
-//			myTemp[count] = new Gui("Gui #" + count, Math.random() * 144, true);
-//		}
 		
 		for (int row = 0; row < myTemp.length; row++)
 		{

@@ -72,11 +72,11 @@ public class Gui implements Comparable
 		int compared = 0;
 		if (comparedTemp instanceof Gui)
 		{
-			if (this.temp < ((Gui) comparedTemp).getTemp() || (!this.isCool && ((Gui) comparedTemp).isCool()))
+			if (this.temp < ((Gui) comparedTemp).getTemp())
 			{
 				compared = -1;
 			} 
-			else if (this.temp > ((Gui) comparedTemp).getTemp() || (this.isCool && !((Gui) comparedTemp).isCool()))
+			else if (this.temp > ((Gui) comparedTemp).getTemp())
 			{
 				compared = 1;
 			}
